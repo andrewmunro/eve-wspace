@@ -6,8 +6,7 @@ pip install -r /home/maptool/eve-wspace/requirements-mysql.txt
 cd /home/maptool/eve-wspace/evewspace/evewspace 
 cp local_settings.py.example local_settings.py 
 sed -i -e "s/'alan_please_add_secret_key'/'${DJANGO_KEY}'/" local_settings.py
-sed -i -e "s/'django.db.backends.'/'django.db.backends.mysql'/" local_settings.py 
-sed -i -e "s/'root'/'${MYSQL_USER}'/" local_settings.py 
+sed -i -e "s/'django.db.backends.'/'django.db.backends.mysql'/" local_settings.py
 sed -i -e "s/'PASSWORD': ''/'PASSWORD': '${MYSQL_PASS}'/" local_settings.py 
 sed -i -e "s/DEBUG = True/DEBUG = False/" local_settings.py
 
@@ -31,5 +30,3 @@ echo "./manage.py collectstatic --noinput"
 
 echo "Install gunicorn"
 pip install gunicorn
-
-
