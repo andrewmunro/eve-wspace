@@ -1,7 +1,9 @@
 #! /bin/bash
 virtualenv --no-site-packages /home/maptool/eve-wspace 
 source /home/maptool/eve-wspace/bin/activate 
-pip install -r /home/maptool/eve-wspace/requirements-mysql.txt 
+pip install -r /home/maptool/eve-wspace/requirements-mysql.txt
+
+: ${MYSQL_PASS:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
 
 cd /home/maptool/eve-wspace/evewspace/evewspace 
 cp local_settings.py.example local_settings.py 
