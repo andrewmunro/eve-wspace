@@ -3,13 +3,13 @@ virtualenv --no-site-packages /home/maptool/eve-wspace
 source /home/maptool/eve-wspace/bin/activate 
 pip install -r /home/maptool/eve-wspace/requirements-mysql.txt
 
-: ${MYSQL_PASS:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+: ${PASS:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
 
 cd /home/maptool/eve-wspace/evewspace/evewspace 
 cp local_settings.py.example local_settings.py 
 sed -i -e "s/'alan_please_add_secret_key'/'${DJANGO_KEY}'/" local_settings.py
 sed -i -e "s/'django.db.backends.'/'django.db.backends.mysql'/" local_settings.py
-sed -i -e "s/'PASSWORD': ''/'PASSWORD': '${MYSQL_PASS}'/" local_settings.py 
+sed -i -e "s/'PASSWORD': ''/'PASSWORD': '${PASS}'/" local_settings.py
 sed -i -e "s/DEBUG = True/DEBUG = False/" local_settings.py
 
 cd /home/maptool/eve-wspace/evewspace 

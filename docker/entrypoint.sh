@@ -1,8 +1,8 @@
 #! /bin/bash
 set -e
 
-: ${MYSQL_PASS:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
-: ${MYSQL_HOST:=mysql}
+: ${PASS:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+: ${HOST:=mysql}
 : ${USER:=maptool}
 
 while ! mysqladmin ping -u"root" -p"$MYSQL_PASS" -h"$MYSQL_HOST" --silent; do
