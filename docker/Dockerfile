@@ -19,7 +19,7 @@ ENV INITRD No
 
 #Update packages and install needed.
 RUN apt-get -y update
-RUN apt-get install -y git-core build-essential python-dev python-pip nginx bzip2 memcached libmysqlclient-dev libxml2-dev libxslt-dev rabbitmq-server supervisor curl sudo libyaml-dev vim
+RUN apt-get install -y git-core build-essential python-dev python-pip nginx bzip2 memcached mysql-client libxml2-dev libxslt-dev rabbitmq-server supervisor curl sudo libyaml-dev vim
 
 #Set up nginx as daemon off.
 RUN sed -i -e '1idaemon off;' /etc/nginx/nginx.conf
@@ -41,7 +41,7 @@ WORKDIR /home/${MYSQL_USER}
 RUN mkdir /home/${MYSQL_USER}/static
 
 #Get eve-wspace code
-RUN git clone https://github.com/marbindrakon/eve-wspace.git
+RUN git clone https://github.com/andrewmunro/eve-wspace.git && cd eve-wspace && git checkout docker-improvements
 
 # Concat latest eve mysql dump into single file
 RUN curl -O https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2
